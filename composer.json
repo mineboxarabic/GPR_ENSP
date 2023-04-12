@@ -1,0 +1,11 @@
+{
+    "require": {
+        "illuminate/database": "^10.7",
+        "symfony/routing": "^6.2"
+    },
+    "autoload":{
+        "classmap": [
+            "app/Models"
+        ]
+    }
+}
