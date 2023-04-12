@@ -1,4 +1,5 @@
 <body>
+<script type="module" src="/GPR_ENSP/public/assets/js/costomJS.js"></script>
     <h1><?php //User::find(3);
         //echo the name of the user with id 3
         $user = User::find(264);
@@ -78,7 +79,7 @@
                 <div class="col-md-12">
                     <div class="input_container">
                         <input type="text" class="form-control" id="user_id"
-                            placeholder="Chercher par nom d'utilisateur" onkeyup="autocompletIndexUser()"
+                            placeholder="Chercher par nom d'utilisateur"
                             autocomplete="off">
                         <ul id="user_list_id"></ul>
                     </div>
@@ -538,5 +539,5 @@
 
         </div>
     </div>
-<script type="module" src="/GPR_ENSP/public/assets/js/costomJS.js"></script>
+
 </body>
