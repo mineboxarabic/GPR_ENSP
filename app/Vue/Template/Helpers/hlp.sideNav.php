@@ -21,7 +21,7 @@
 
                 <ul class="list-unstyled sidebar-left">
                     <li>
-                        <a href="home" style="font-family: 'Raleway', sans-serif;"><i
+                        <a href="<?= $_SESSION['__DIR__'] . 'home'?>" style="font-family: 'Raleway', sans-serif;"><i
                                 class="glyphicon glyphicon-th-large"></i>Accueil</a>
                     </li>
                     <li>

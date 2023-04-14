@@ -122,7 +122,13 @@ class ComposerStaticInitccad85f7f102eb90087164e381f5bc47
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Emprunt' => __DIR__ . '/../..' . '/app/Models/Emprunt.php',
+        'Historique' => __DIR__ . '/../..' . '/app/Models/historique.php',
+        'Lot' => __DIR__ . '/../..' . '/app/Models/Lot.php',
+        'Materiel' => __DIR__ . '/../..' . '/app/Models/Materiel.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'Projet' => __DIR__ . '/../..' . '/app/Models/Projet.php',
+        'Reservation' => __DIR__ . '/../..' . '/app/Models/Reservation.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'User' => __DIR__ . '/../..' . '/app/Models/User.php',

@@ -1,8 +1,10 @@
 <?php 
-
 class Home extends Controller
 {
     public function index($name='') {
+
+
+
         $data = [
             'title' => 'Home',
         ];

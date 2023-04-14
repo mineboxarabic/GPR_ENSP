@@ -14,7 +14,7 @@ class Router{
     public function resolve(){
         $url = $this->parseUrl();
         $method = $_SERVER['REQUEST_METHOD'];
-        $view = $this->routes[$method][$url] ?? false;
+        $view = $this->routes[$method][$url] ?? false; //here is the error
         if($view){
             $view = explode('@', $view);
             $this->callAction(...$view);
@@ -24,7 +24,7 @@ class Router{
     }
 
     protected function callAction($controller, $action){
-        $controller = "App\\Controllers\\$controller";
+        $controller = "app\\Controllers\\$controller";
         $controller = new $controller;
         if(!method_exists($controller, $action)){
             echo "Method $action not found";

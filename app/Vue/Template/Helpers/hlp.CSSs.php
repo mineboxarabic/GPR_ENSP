@@ -33,6 +33,7 @@
 
     <!-- Full Calendar CSS -->
     <link rel="stylesheet" href="/GPR_ENSP/public/assets/css/calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="/GPR_ENSP/public/assets/css/all.css">
 
     <!-- Full Calendar Print CSS -->
     <link rel="stylesheet" href="/GPR_ENSP/public/assets/css/calendar/fullcalendar.print.css" media="print">

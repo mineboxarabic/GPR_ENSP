@@ -8,7 +8,13 @@ $baseDir = dirname($vendorDir);
 return array(
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Emprunt' => $baseDir . '/app/Models/Emprunt.php',
+    'Historique' => $baseDir . '/app/Models/historique.php',
+    'Lot' => $baseDir . '/app/Models/Lot.php',
+    'Materiel' => $baseDir . '/app/Models/Materiel.php',
     'PhpToken' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+    'Projet' => $baseDir . '/app/Models/Projet.php',
+    'Reservation' => $baseDir . '/app/Models/Reservation.php',
     'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
     'UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
     'User' => $baseDir . '/app/Models/User.php',

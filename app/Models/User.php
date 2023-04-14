@@ -75,8 +75,50 @@ class User  extends Eloquent
     {
         parent::__construct();
     }
-
+    protected $fillable =[
+        'id', 'last_name', 'first_name', 'fonction', 'ine', 'erasmus', 'lien_conv', 'lien_attest'
+    ];
+    public $timestamps = false;
     public function getById($id){
         return $this->where('id', $id)->first();
     }
+
+    public static function consoleLog($message){
+        echo "<script>console.log('".$message."');</script>";
+    }
+
+    public static function isFilesExist($id){
+        $user = User::where('id', $id)->first();
+        if($user['lien_conv'] == null || $user['lien_attest'] == null){
+            return false;
+        }
+        return true;
+    }
+
+
+    public static function isLate($id){
+        $emprunts = Emprunt::where('id_user', $id)->get();
+        //get the date of today
+        $today = date('Y-m-d H:i:s');
+        
+        //get the date of the return
+        if(count($emprunts) > 0){
+            foreach($emprunts as $emprunt){
+                $date_retour = $emprunt['date_retour'];
+                echo "<script>console.log('Date Routour: ".count($emprunts).", Today: ".$today." is late: ".($date_retour < $today)."');</script>";
+                if($date_retour < $today){
+                    return true;
+                }
+            }
+                
+        }
+        else{
+            User::consoleLog("couxxnt: ".count($emprunts));
+            return false;
+        }
+        return false;
+
+    }
+
+
 }

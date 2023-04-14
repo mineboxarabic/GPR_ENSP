@@ -37,7 +37,7 @@ require_once 'Helpers/hlp.sideNav.php'; //? put all the side nav in the header :
             <h1 class="page-header"><?=$title?></h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <a href="javascript:void(0);">Home</a> <i class="zmdi zmdi-circle"></i> <?=$title == "Home" ? "" :$title?>
+                    <a href="<?=$_SESSION['__DIR__'].'home'?>">Home</a> <i class="zmdi zmdi-circle"></i> <?=$title == "Home" ? "" :$title?>
                 </li>
             </ol>
         </div>
