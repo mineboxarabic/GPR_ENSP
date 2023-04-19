@@ -8,6 +8,7 @@ class App {
     protected $params = [];
 
     protected $routes = [
+            '/' => ['controller' => 'Home', 'method' => 'index'],
             'home' => ['controller' => 'Home', 'method' => 'index'],
             'userFile' => ['controller' => 'UserC', 'method' => 'showProfile'],
     ];

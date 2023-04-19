@@ -1,4 +1,5 @@
 <body>
+<script type="module" src="/GPR_ENSP/public/assets/js/costomScripts/User.js"></script>
 
     <div class="row">
         <div class="col-lg-12">
@@ -172,10 +173,9 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <form class="empruntMateriel" id="empruntMateriel" action="#">
+                    <form class="empruntMateriel" id="empruntMateriel" action="<?= $_SESSION['__DIR__'].'EmpruntC/addEmpruntMateriel/'.$user->id?>">
                         <div class="list-group">
-                            <input class="form-control" name="num_materiel" id="num_materiel"
-                                placeholder="Scanner l'article" autofocus="">
+                            <input class="form-control" name="num_materiel" id="num_materiel" placeholder="Scanner l'article" autofocus="">
                         </div>
                         <!-- /.list-group -->
                         <input type="submit" class="btn btn-success btn-block legitRipple" value="Valider">
@@ -247,7 +247,7 @@
                                                 $date_emprunt = date('d/m/Y', strtotime($emprunt->date_debut));
                                                 $date_retour = date('d/m/Y', strtotime($emprunt->date_retour));
                                                 $isLate = Emprunt::isLate($user->id, $materiel->id_materiel);
-                                                $statu = !$isLate ? "":  '<span class="label label-danger">Retard</span>&nbsp;&nbsp;<a href="#" id="envoi_mail"><img src="'.$_SESSION['__DIR__'].'assets/img/mail.png"></a>&nbsp;&nbsp;<a href="#" id="envoi_sms"><img src="'.$_SESSION['__DIR__'].'assets/img/phone_3.png"></a>';
+                                                $statu = !$isLate ? "":  '<span class="label label-danger">Retard</span>&nbsp;&nbsp;<a href="'.$_SESSION["__DIR__"].'UserC/sendEmail" id="envoi_mail"><img src="'.$_SESSION['__DIR__'].'assets/img/mail.png"></a>&nbsp;&nbsp;<a href="#" id="envoi_sms"><img src="'.$_SESSION['__DIR__'].'assets/img/phone_3.png"></a>';
                                                 echo '<tr class="gradeX"><td>'.$materiel->id_materiel.'</td><td>'.$materiel->nom.'</td><td>'.$date_emprunt.'</td><td>'.$date_retour.'</td><td>'.$statu.'</td></tr>';
                                             }
                                         }else{
@@ -315,11 +315,11 @@
                         }
 
                         $("#envoi_mail").click(function() {
-                            var data = 'num_etudiant=' + 820;
+                            var data = 'num_etudiant=' + <?=$user->id?>
 
                             $.ajax({
                                 type: "POST",
-                                url: "send_mail.php",
+                                url: "UserC/sendEmail",
                                 datatype: "html",
                                 data: data,
 
@@ -402,63 +402,7 @@
                         </table>
 
 
-                        <script>
-                        $(".delete").click(function() {
-
-                            var id_reservation = $(this).attr('id');
-                            var data = 'num_reservation=' + id_reservation;
-
-                            $.ajax({
-                                type: "POST",
-                                url: "annulation_reservation.php",
-                                datatype: "html",
-                                data: data,
-
-                                success: function(data) {
-                                    window.location.href = 'fiche_utilsateur.php?num_etudiant=820';
-
-                                }
-                            });
-                            return false;
-
-                        });
-                        </script>
-
-                        <script>
-                        //VALIDER LA RESERVATION MATERIEL 
-                        $("#validationRes").click(function() {
-                            var idRes = $("#idRes").val();
-                            var idUser = $("#idUser").val();
-                            var materiel = $("#idMat").val();
-                            //alert(materiel);
-                            var data = 'id_resa=' + idRes + '&id_user=' + idUser + '&num_materiel=' + materiel;
-                            //alert(data);	
-
-                            $.ajax({
-                                type: "POST",
-                                url: "ajax_valid_resa.php",
-                                datatype: "html",
-                                data: data,
-
-                                success: function(data) {
-                                    $.notify({
-                                        message: 'EMPRUNT realisé avec succès'
-                                    }, {
-                                        type: 'success'
-                                    });
-                                    setTimeout(function() {
-                                        location.reload(true);
-                                    }, 500);
-                                }
-                            });
-
-                            return false;
-
-
-
-                        });
-                        </script>
-
+                     
 
                         <!----------------------------------------- Partie des LOTS---------------------------------------------------->
                         <div class="row">
@@ -489,64 +433,11 @@
                             </tbody>
                         </table>
 
-                        <script>
-                        $(".delete").click(function() {
-
-                            var id_reservation = $(this).attr('id');
-                            var data = 'num_reservation=' + id_reservation;
-
-                            $.ajax({
-                                type: "POST",
-                                url: "annulation_reservation.php",
-                                datatype: "html",
-                                data: data,
-
-                                success: function(data) {
-                                    window.location.href = 'fiche_utilsateur.php?num_etudiant=820';
-
-                                }
-                            });
-                            return false;
-
-                        });
-                        </script>
+                        
 
 
                         <script>
-                        //VALIDER LA RESERVATION MATERIEL 
-                        $("#validationRes_lot").click(function() {
-                            var idRes_lot = $("#idRes_lot").val();
-                            var idUser_lot = $("#idUser_lot").val();
-                            var lot = $("#idMat_lot").val();
 
-                            var data = 'id_resa_lot=' + idRes_lot + '&id_user_lot=' + idUser_lot + '&num_lot=' +
-                                lot;
-                            //alert(data);	
-
-                            $.ajax({
-                                type: "POST",
-                                url: "ajax_valid_resa_lot.php",
-                                datatype: "html",
-                                data: data,
-
-                                success: function(data) {
-                                    $.notify({
-                                        message: 'EMPRUNT du lot realisé avec succès'
-                                    }, {
-                                        type: 'success'
-                                    });
-                                    setTimeout(function() {
-                                        location.reload(true);
-                                    }, 500);
-                                }
-                            });
-
-                            return false;
-
-
-
-
-                        });
                         </script>
 
 

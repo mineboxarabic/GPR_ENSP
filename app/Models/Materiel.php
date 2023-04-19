@@ -43,4 +43,29 @@ class Materiel extends Eloquent
     {
         parent::__construct();
     }
+
+    public static function isMaterialExist($id_materiel){
+        $material = Materiel::where('id_materiel', $id_materiel)->first();
+        if($material != null)
+            return true;
+        else
+            return false;
+    }
+
+    public static function isMaterialBorrowed($id){
+        $material = Materiel::where('id_materiel', $id)->first();
+        if($material->pret == 1)
+            return true;
+        else
+            return false;
+    }
+
+
+    public static function isMaterialReserved($id){
+        $material = Materiel::where('id_materiel', $id)->first();
+        if($material->dispo == 0)
+            return true;
+        else
+            return false;
+    }
 }

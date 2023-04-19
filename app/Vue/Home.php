@@ -1,5 +1,7 @@
 <body>
 <script type="module" src="/GPR_ENSP/public/assets/js/costomJS.js"></script>
+<script type="module" src="/GPR_ENSP/public/assets/js/costomScripts/Home.js"></script>
+
 <link rel="stylesheet" href="/GPR_ENSP/public/assets/css/costomCss/Home.css">
     <h1><?php //User::find(3);
         //echo the name of the user with id 3
@@ -76,8 +78,8 @@
 
                     <div class="col-md-9">
                         <div class="list-group">
-                            <input class="form-control" id="num_etudiant" name="num_etudiant" placeholder="Scanner la carte utilisateur" autofocus="">
-
+                            <input class="form-control inputIndexSearch" id="num_etudiant" name="num_etudiant" placeholder="Scanner la carte utilisateur" autofocus="">
+                            
                         </div>
                     </div>
                     <!-- /.list-group -->
@@ -121,8 +123,7 @@
                 <br>
                 <div class="col-md-6">
                     <div class="input_container">
-                        <input type="text" class="form-control" id="stage_id"
-                            placeholder="Chercher les materiels par mots clés" onkeyup="autocompletIndex()"
+                        <input type="text" class="form-control" id="stage_id" placeholder="Chercher les materiels par mots clés" onkeyup="autocompletIndex()"
                             autocomplete="off">
                         <ul id="stage_list_id"></ul>
                     </div>
