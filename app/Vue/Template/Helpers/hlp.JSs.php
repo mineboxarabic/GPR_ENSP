@@ -93,3 +93,6 @@
 
 <!-- Dashboard Custom Scripts -->
 <script src="/GPR_ENSP/public/assets/js/scripts/dashboard.js"></script>
+
+<!-- DataTable Custom Scripts -->
+<script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
