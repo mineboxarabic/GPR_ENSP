@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <title>Deluxe - Material Admin Template</title>
     <?php 
+        
         require_once 'Helpers/hlp.CSSs.php'; //? EN: put all the css files in the header: FR: mettez tous les fichiers css dans l'en-tête
     ?>
 </head>

@@ -225,7 +225,7 @@
                     </thead>
                     <tbody>
 
-                   
+                   //TODO: Add lot reservation
 
                     </tbody>
                 </table>

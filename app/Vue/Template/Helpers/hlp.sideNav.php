@@ -75,7 +75,7 @@
 
 
                     <li>
-                        <a href="./historique.php"><i class="glyphicon glyphicon-repeat"></i>Historique des emprunts</a>
+                        <a href=<?=$_SESSION['__DIR__'] . 'history'?>><i class="glyphicon glyphicon-repeat"></i>Historique des emprunts</a>
                     </li>
                     <li>
                         <a href="./reservations_visu.php"><i class="glyphicon glyphicon-repeat"></i>Voir les

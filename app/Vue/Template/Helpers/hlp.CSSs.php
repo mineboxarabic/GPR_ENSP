@@ -40,6 +40,9 @@
 
     <!-- Deluxe Custom CSS -->
     <link href="/GPR_ENSP/public/assets/css/deluxe-admin.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/GPR_ENSP/public/assets/css/datatables.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
     <!-- Legit Scrollbar CSS -->
     <!-- <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css"> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,3 +51,4 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+

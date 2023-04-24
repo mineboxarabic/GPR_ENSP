@@ -11,6 +11,7 @@ class App {
             '/' => ['controller' => 'Home', 'method' => 'index'],
             'home' => ['controller' => 'Home', 'method' => 'index'],
             'userFile' => ['controller' => 'UserC', 'method' => 'showProfile'],
+            'history' => ['controller' => 'historyC', 'method' => 'main'],
     ];
     public function __construct() {
         $url = $this->parseUrl();
@@ -18,6 +19,7 @@ class App {
 
 
         if (isset($this->routes[$url[0]])) {
+
             $this->controller = $this->routes[$url[0]]['controller'];
             $this->method = $this->routes[$url[0]]['method'];
            // $this->params = $this->routes[$url[0]]['params'];
