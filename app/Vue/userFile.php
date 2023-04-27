@@ -417,7 +417,7 @@
                                         
                                     }
                                 })
-                                /* #endregion */
+                            /* #endregion */
         
                             /* #region //_Ajax conection to remove the "emprunt". */
                                 $('#btn-retour-materiel').on('click',function(){
