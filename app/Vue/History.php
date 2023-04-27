@@ -17,7 +17,8 @@
 
     let data = <?php 
     $data = array();
-    //TODO: add the lot conditions
+    //TODO: add the lot conditions.
+    
     $historique = Historique::all();
         foreach ($historique as $key => $value) {
             $user = User::where('id', $value->id_user)->first();

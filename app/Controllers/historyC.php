@@ -14,6 +14,7 @@ class historyC extends Controller
         echo "<script>console.log('sortBy: ".$sortBy."');</script>";
         $data = [
             'title' => 'history'. $sortOrder,
+            'bigTitle'=>'history'. $sortOrder
         ];
         $this->view('Template/inc.NavTS', $data).
         $this->view('history').

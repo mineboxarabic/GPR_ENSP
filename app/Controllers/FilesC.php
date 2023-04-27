@@ -23,7 +23,7 @@ class FilesC extends Controller{
     
     if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg" && $fileType != "pdf") {
         // Invalid file type
-       $data = ['title'=>'Fiche utilisateur', 'user'=>User::where('id', $idUser)->first()];
+       $data = ['bigTitle'=>"Fiche utilisateur",'title'=>'Fiche utilisateur', 'user'=>User::where('id', $idUser)->first()];
         $notifMessage = "Type de fichier invalide";
         echo "<script>\n
             $.notify({\n
@@ -33,7 +33,7 @@ class FilesC extends Controller{
             });\n
 
     </script>\n".
-    $this->view('Template/inc.NavTS', ['title'=>'Fiche utilisateur']).
+    $this->view('Template/inc.NavTS', ['title'=>'Fiche utilisateur','bigTitle'=>"Fiche utilisateur"]).
         $this->view('userFile',$data).
         $this->view('Template/inc.Footer');
     }
@@ -56,7 +56,7 @@ class FilesC extends Controller{
                     ]);
             }
 
-        $data = ['title'=>'Fiche utilisateur', 'user'=>$user];
+        $data = ['title'=>'Fiche utilisateur','bigTitle'=>"Fiche utilisateur", 'user'=>$user];
         /*echo $this->view('Template/inc.NavTS', ['title'=>'Fiche utilisateur']).
             $this->view('userFile',$data).
          $this->view('Template/inc.Footer');*/
@@ -70,7 +70,7 @@ class FilesC extends Controller{
     } else {
         // File upload failed
 
-        $data = ['title'=>'Fiche utilisateur', 'user'=>User::where('id', $idUser)->first()];
+    $data = ['bigTitle'=>"Fiche utilisateur",'title'=>'Fiche utilisateur', 'user'=>User::where('id', $idUser)->first()];
         $notifMessage = "Un problème est survenu lors de l'upload du fichier";
         echo "<script>\n$.notify({\nmessage: '$notifMessage'\n}, {\ntype: 'danger'\n});\n</script>\n"
         .$this->view('Template/inc.NavTS', ['title'=>'Fiche utilisateur']).

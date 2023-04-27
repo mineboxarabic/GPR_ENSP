@@ -1,5 +1,4 @@
-//import jquery
-import * as jQuery from './jquery-2.2.4.min.js' ;
+
 
 function autocompletIndexUser(){
     var min_length = 0; // min caracters to display the autocomplete
@@ -21,9 +20,7 @@ function autocompletIndexUser(){
     }
 }
 
-$(document).ready(function(){
-    $('#user_id').keyup(function(){
-        autocompletIndexUser();
-    });
 
+$('#user_id').on('keyup',function(){
+    autocompletIndexUser();
 });

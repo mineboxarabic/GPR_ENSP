@@ -29,7 +29,7 @@ class Emprunt extends Eloquent
     protected $emprunteur_retour;
 
     protected $table = 'emprunt';
-
+    public $timestamps = false;
     
     public function __construct()
     {

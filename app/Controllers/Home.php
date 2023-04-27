@@ -7,6 +7,7 @@ class Home extends Controller
 
         $data = [
             'title' => 'Home',
+            'bigTitle'=>"Home",
         ];
         $this->view('Template/inc.NavTS', $data).
         $this->view('Home').

@@ -2,6 +2,7 @@
 
 
 function main(){
+    console.log('Welcome to Home.js');
     let form = document.querySelector('.indexUser');
     let inputField = document.querySelector('.inputIndexSearch');
 
@@ -13,3 +14,7 @@ function main(){
     })
 }
 document.addEventListener('onload',main());
+
+
+
+

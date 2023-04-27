@@ -38,6 +38,9 @@ class Materiel extends Eloquent
 
     protected $table = 'materiel';
 
+    public $timestamps = false;
+
+    
     
     public function __construct()
     {
@@ -54,7 +57,7 @@ class Materiel extends Eloquent
 
     public static function isMaterialBorrowed($id){
         $material = Materiel::where('id_materiel', $id)->first();
-        if($material->pret == 1)
+        if($material->pret == 1 && $material)
             return true;
         else
             return false;
@@ -62,10 +65,31 @@ class Materiel extends Eloquent
 
 
     public static function isMaterialReserved($id){
-        $material = Materiel::where('id_materiel', $id)->first();
-        if($material->dispo == 0)
+        $reservation = Reservation::where('id_materiel', $id)->first();
+        if($reservation != null)
             return true;
         else
             return false;
+      
+    }
+
+    public static function isMaterialInLot($id){
+        $material = Materiel::where('id_materiel', $id)->first();
+        if($material['num_lot'] == 0)
+            return false;
+        else
+            return true;
+    }
+
+    public static function isDisponible($id){
+        $material = Materiel::where('id_materiel', $id)->first();
+        if($material['dispo'] == 1 && Materiel::isMaterialInLot($id) == false && Materiel::isMaterialReserved($id) == false)
+            return true;
+        else
+            return false;
+    }
+
+    public static function mettreHorsService($id){
+        Materiel::where('id_materiel', $id)->update(['dispo' =>0]);
     }
 }

@@ -1,6 +1,7 @@
 <body>
-<script type="module" src="/GPR_ENSP/public/assets/js/costomJS.js"></script>
-<script type="module" src="/GPR_ENSP/public/assets/js/costomScripts/Home.js"></script>
+
+<script defer type="module" src="/GPR_ENSP/public/assets/js/costomScripts/Home.js"></script>
+<script defer type="module" src="/GPR_ENSP/public/assets/js/costomJS.js"></script>
 
 <link rel="stylesheet" href="/GPR_ENSP/public/assets/css/costomCss/Home.css">
     <h1><?php //User::find(3);
@@ -162,10 +163,10 @@
                 </div>
             </div>
             <div class="panel-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover TableReservations" id="TableReservations">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>#</th> <!-- id_reservation Materiel Utilisateur debut fin-->
                             <th>Matériel</th>
                             <th>Utilisateur</th>
                             <th>début</th>
@@ -173,24 +174,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                           $reservations = Reservation::all();
-                           foreach ($reservations as $reservation) {
-                               $materiel = Materiel::where('id_materiel', $reservation->id_materiel)->first();
-                               $utilisateur = User::find($reservation->id_user);
-                               //check if $materiel->designation is null
-                               
-                               if($reservation->date_debut == date('Y-m-d') && $materiel != null ){
-                               echo "<tr>";
-                               echo "<td>".$reservation->id_reservation."</td>";
-                               echo "<td>".$materiel->designation."</td>";
-                               echo "<td>".$utilisateur->first_name."</td>";
-                               echo "<td>".$reservation->date_debut."</td>";
-                               echo "<td>".$reservation->date_retour."</td>";
-                               echo "</tr>";
-                               }
-                           }
-                        ?>
+
                     </tbody>
                 </table>
             </div>
@@ -226,7 +210,7 @@
                     <tbody>
 
                    //TODO: Add lot reservation
-
+                   
                     </tbody>
                 </table>
             </div>
@@ -234,5 +218,28 @@
 
         </div>
     </div>
-
+    <script defer type="module">
+        //check if DataTable exist on the table .TableReservations
+        if ($.fn.DataTable.isDataTable('.TableReservations')) {
+            $('.TableReservations').DataTable().destroy();
+        }
+        $('.TableReservations').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "serverMethod": "post",
+            "ajax": "<?=$_SESSION['__DIR__'].'ReservationsC/getTodayRes' ?>",
+            paging: false,
+            searching: false,
+            ordering: false,
+            info: false,
+            "columns": [
+                { "data": "id_reservation" },
+                { "data": "Materiel" },
+                { "data": "Utilisateur" },
+                { "data": "debut" },
+                { "data": "fin" }
+            ]
+        }
+        );
+</script>
 </body>

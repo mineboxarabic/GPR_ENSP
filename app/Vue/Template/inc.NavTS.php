@@ -11,6 +11,8 @@
     <?php 
         
         require_once 'Helpers/hlp.CSSs.php'; //? EN: put all the css files in the header: FR: mettez tous les fichiers css dans l'en-tête
+        
+    
     ?>
 </head>
 <body>
@@ -35,7 +37,7 @@ require_once 'Helpers/hlp.sideNav.php'; //? put all the side nav in the header :
     <!-- .row -->
     <div class="row">
         <div class="col-md-12">
-            <h1 class="page-header"><?=$title?></h1>
+            <h1 class="page-header"><?=$bigTitle?></h1>
             <ol class="breadcrumb">
                 <li class="active">
                     <a href="<?=$_SESSION['__DIR__'].'home'?>">Home</a> <i class="zmdi zmdi-circle"></i> <?=$title == "Home" ? "" :$title?>
@@ -44,5 +46,5 @@ require_once 'Helpers/hlp.sideNav.php'; //? put all the side nav in the header :
         </div>
     </div>
     <!-- /.row --> 
-
+    
 

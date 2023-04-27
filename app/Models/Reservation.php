@@ -24,6 +24,13 @@ class Reservation extends Eloquent
         $reservation = Reservation::where('id_reservation', $id)->first();
         return $reservation;
     }
+    public static function getTodayReservations(){
+        $today = date("Y-m-d");
+        $reservations = Reservation::where('date_debut', $today)->get();
+        return $reservations;
+    }
+
+
 
 
 }

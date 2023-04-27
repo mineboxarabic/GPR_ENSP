@@ -10,9 +10,11 @@
 * [X] User profile
 * [X] User search by name.
 * [X] User search by index or id
+
+* [X] add the history lf Emprent //TODAY
+
 * [ ] Faire l'emrunt et le retourn par indice de materielle .
 * [ ] Impliment the email sending possiblity
-* [ ] add the history lf Emprent
 * [ ] Add the "Voir les reservation" page.
 * [ ] Add the "Les retard" page.
 * [ ] disconect
@@ -56,6 +58,23 @@
     2- Composer <br>
     3- DataBase in global scope <br>
     4- DataTables https://datatables.net/manual/installation <br>
+
+<br>
+<br>
+<h2>C'est quoi le MVC</h2>
+MVC est un acronyme pour "Modèle-Vue-Contrôleur" (ou "Model-View-Controller" en anglais). Il s'agit d'un pattern d'architecture logicielle couramment utilisé en développement web, et particulièrement en PHP.
+
+L'architecture MVC consiste à séparer les différentes responsabilités de l'application en trois parties distinctes :
+
+Le modèle (Model) : il représente les données de l'application et les traitements qui peuvent être appliqués sur ces données.
+
+La vue (View) : elle représente la présentation visuelle de l'application, c'est-à-dire l'interface utilisateur (UI).
+
+Le contrôleur (Controller) : il gère les interactions entre le modèle et la vue, c'est-à-dire qu'il récupère les données depuis le modèle, les traite si besoin, et les transmet à la vue pour qu'elle les affiche à l'utilisateur.
+
+En utilisant l'architecture MVC, on peut séparer efficacement les différents aspects de l'application, ce qui rend le code plus facile à maintenir et à améliorer. Par exemple, si l'on souhaite changer la présentation visuelle de l'application, on peut le faire en modifiant uniquement la vue, sans toucher au modèle ou au contrôleur. De même, si l'on souhaite modifier le traitement des données, on peut le faire dans le modèle, sans toucher à la vue ou au contrôleur.
+
+En PHP, il existe de nombreuses librairies et frameworks qui utilisent l'architecture MVC, tels que Laravel, Symfony, CodeIgniter, ou encore Yii.
 <style>
     body{
         background:white;
