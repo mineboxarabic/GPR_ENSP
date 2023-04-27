@@ -197,7 +197,7 @@
 
 
             <div class="panel-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover" id="tableReservationLot">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -220,6 +220,7 @@
     </div>
     <script defer type="module">
         //check if DataTable exist on the table .TableReservations
+    /* $region //_here is the filling of the reservations of the day */
         if ($.fn.DataTable.isDataTable('.TableReservations')) {
             $('.TableReservations').DataTable().destroy();
         }
@@ -241,5 +242,32 @@
             ]
         }
         );
+    /* $endregion */
+
+
+
+    /* $region //_here is the filling of the reservations of the day */
+            if ($.fn.DataTable.isDataTable('#tableReservationLot')) {
+                $('#tableReservationLot').DataTable().destroy();
+            }
+            $('#tableReservationLot').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "serverMethod": "post",
+                "ajax": "<?=$_SESSION['__DIR__'].'ReservationsC/getTodayResLot' ?>",
+                paging: false,
+                searching: false,
+                ordering: false,
+                info: false,
+                "columns": [
+                    { "data": "id_reservation" },
+                    { "data": "Lot" },
+                    { "data": "Utilisateur" },
+                    { "data": "debut" },
+                    { "data": "fin" }
+                ]
+            }
+            );
+    /* $endregion */
 </script>
 </body>

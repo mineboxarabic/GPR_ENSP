@@ -19,4 +19,5 @@ class autocomplete extends Controller{
         }
         echo '</ul>';
     }
+
 }

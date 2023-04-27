@@ -20,4 +20,6 @@ class historyC extends Controller
         $this->view('history').
         $this->view('Template/inc.Footer');
     }
+
+    
 }

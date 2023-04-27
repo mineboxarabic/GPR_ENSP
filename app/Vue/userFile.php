@@ -506,6 +506,14 @@
                                                 return '';
                                                 
                                             }
+                                        },
+                                        {
+                                            "targets": 1,
+                                            "data": null,
+                                            "defaultContent": "#",
+                                            "render": function (data, type, row, meta) {
+                                                return `<a href="<?= $_SESSION['__DIR__'].'MatFile/'?>${data}">${data}</a>`;
+                                            }
                                         }
                                     ]
                                 }

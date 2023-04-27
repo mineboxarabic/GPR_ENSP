@@ -12,6 +12,8 @@ class App {
             'home' => ['controller' => 'Home', 'method' => 'index'],
             'userFile' => ['controller' => 'UserC', 'method' => 'showProfile'],
             'history' => ['controller' => 'historyC', 'method' => 'main'],
+            'MatFile' => ['controller' => 'MaterielC', 'method' => 'showMaterielDetails'],
+
     ];
     public function __construct() {
         $url = $this->parseUrl();

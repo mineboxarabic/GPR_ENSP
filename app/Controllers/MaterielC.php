@@ -9,8 +9,9 @@ class MaterielC extends Controller
             'Mat' => $materiel,
         ];
         $etat = $materiel->etat == '' || $materiel->etat == ' '  ?  '--' : $materiel->etat;
+        $button = Materiel::isDisponible($id_mat) ? '<button class="btn btn-warning btn-sm legitRipple" name="etat" type="button" id="mettre-hors-service-btn">Materiel Hors service</button>' : '';
         $dataNav =[
-            'title' => 'Fiche materiel:#' .$id_mat.' - '. $materiel->designation . ' <span class="label label-primary">Etat : '.$etat.'</span> <button class="btn btn-warning btn-sm legitRipple" name="etat" type="button" id="mettre-hors-service-btn">Materiel Hors service</button>',
+            'title' => 'Fiche materiel:#' .$id_mat.' - '. $materiel->designation . ' <span class="label label-primary">Etat : '.$etat.'</span>'.$button,
             'bigTitle'=>'Fiche materiel'
         ];
         echo $this->view('Template/inc.NavTS', $dataNav).
@@ -76,5 +77,35 @@ class MaterielC extends Controller
                 "data" => $data
             );
             echo json_encode($response);
+    }
+
+    public function getHistory($id_mat){
+        $historys = Historique::where('id_mat', $id_mat)->get();
+        $data = array();
+
+
+        foreach($historys as $history ){
+            $user = User::where('id', $history->id_user)->first();
+            $username = 'Inconnu';
+            if($user){
+                $username = $user->first_name . ' '. $user->last_name;
+            }
+            $data[] = array(
+                "id_historique" => $history->id_histo,
+                "User" => $username,
+                "mat" => $history->id_mat,
+                "date_debut" => $history->date_emprunt,
+                "date_fin" => $history->date_retour,
+                "dispo" => $history->rendu
+            );
+        }
+
+            $response = array(
+                "recordsTotal" => count($data),
+                "recordsFiltered" => count($data),
+                "data" => $data
+            );
+            echo json_encode($response);
+
     }
 }

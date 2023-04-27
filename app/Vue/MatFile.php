@@ -116,7 +116,7 @@
                     </script>
 
                 </div>
-                <?php 
+                <?php
                     if(Materiel::isMaterialReserved($Mat->id_materiel)){
                 ?>
                 <p class="text-danger">Attention ! Ce matériel est actuellement réservé par :
@@ -192,7 +192,7 @@
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
                         <table style="width:100%" class="table table-striped table-bordered table-hover"
-                            id="dataTables-example">
+                            id="historyTable">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -216,7 +216,10 @@
                 <!-- /.panel-body -->
             </div>
         </div>
+        
+        
 
+        
 
     </div>
     <!-- /.row -->
@@ -400,6 +403,53 @@
                         { "data": "date_fin" }
                     
                     ]
+                    
+                }
+                );
+        /* #endregion */
+
+
+                /* #region //_Filling the table with the "Reservations" of the user */
+                if ($.fn.DataTable.isDataTable('#historyTable')) {
+                    $('#historyTable').DataTable().destroy();
+                }
+                //TODO:fill this table
+                $('#historyTable').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "serverMethod": "post",
+                    "ajax": "<?=$_SESSION['__DIR__'].'MaterielC/getHistory/'.$Mat->id_materiel ?>",
+                    paging: false,
+                    searching: false,
+                    ordering: false,
+                    info: false,
+                    "columns": [
+                        { "data": "id_historique" },
+                        { "data": "User" },
+                        {"data": "mat"},
+                        { "data": "date_debut" },
+                        { "data": "date_fin" },
+                        { "data": "dispo" }
+                    
+                    ],
+                    columnDefs: [
+                        {
+                                    targets: 2,
+                                        render: function ( data, type, row, meta ) {
+                                            let ret = "<a href='<?= $_SESSION['__DIR__'] . 'MatFile/' ?>" + data + "'>" + data + "</a>";
+                                            return ret;
+                                        }
+                                    
+                            },
+                            {
+                                    targets: 5,
+                                        render: function ( data, type, row, meta ) {
+                                            let ret = data == 1 ? '<span class="glyphicon glyphicon-ok" style="color:#2ecc71;"> </span>' : '<span class="glyphicon glyphicon-remove" style="color:#ea6153;"> </span>';
+                                            return ret;
+                                        }
+                                    
+                            }
+            ],
                     
                 }
                 );
