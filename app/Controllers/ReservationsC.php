@@ -3,9 +3,8 @@
 class ReservationsC extends Controller
 {
     public function getTodayRes(){
-                //{"id_reservation":2773,"id_materiel":0,"lot":1,"id_lot":725,"id_user":29,"date_debut":"2021-04-09","date_retour":"2021-04-16"}
-                // id_reservation Materiel Utilisateur debut fin
-                
+
+               
         $reservations = Reservation::getTodayReservations();
         $data = array();
 
@@ -39,11 +38,11 @@ class ReservationsC extends Controller
         );
         
         echo json_encode($response);
-    }
+   }
 
 
     public function getReservationsByUser($id_user){
-        $reservations = Reservation::where('id_user', $id_user)->get();
+        $reservations = Reservation::where('id_user', $id_user)->where('Lot', 0)->get();
         $data = array();
 
         foreach($reservations as $reservation){
@@ -106,5 +105,13 @@ class ReservationsC extends Controller
                 echo json_encode($response);
                     
                     
+    }
+
+
+    public function Reservations(){
+        echo $this->view('Template/inc.NavTS', ['title'=>'Reservation','bigTitle'=>"Reservation"]).
+        $this->view('Template/inc.navFunc').
+        $this->view('Reservations').
+        $this->view('Template/inc.Footer');
     }
 }

@@ -16,9 +16,21 @@ class Lot extends Eloquent
 
     protected $table = 'lot';
 
+    public $timestamps  = false;
     
     public function __construct()
     {
         parent::__construct();
     }
+
+    public static function isLotExist($id_lot){
+        $lot = Lot::where('id_lot', $id_lot)->first();
+        if($lot != null)
+            return true;
+        else
+            return false;
+    }
+
+
+
 }

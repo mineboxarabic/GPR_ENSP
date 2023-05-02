@@ -54,4 +54,13 @@ class Emprunt extends Eloquent
             return false;
         }
     }
+
+    public static function isLateLot($idUser, $idLot){
+        $emprunt = Emprunt::where('id_user', $idUser)->where('id_lot', $idLot)->where('date_retour', '<', date('Y-m-d H:i:s'))->first();
+        if($emprunt){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

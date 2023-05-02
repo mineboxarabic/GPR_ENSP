@@ -15,10 +15,6 @@
                     </thead>
 
 
-
-
-
-
                     <tbody>
                         <?php
                         //$user = User::find($user->id);
@@ -55,7 +51,7 @@
                             </tr>
                         <?php } else { ?>
                             <tr>
-                                <th>Attestation d'assurancexx</th>
+                                <th>Attestation d'assurance </th>
                                 <th>
                                     <a href="<?= $_SESSION['__DIR__'] . 'uploads/' . $user['id'] . '/' . $user['lien_attest'] ?>"
                                         target="_blank"><img src="<?= $_SESSION['__DIR__'] . '/assets/' ?>img/preview.png"></a>
@@ -183,7 +179,7 @@
 
 
         <!-- .col-md-6 -->
-        <div class="col-md-6 notfinished">
+        <div class="col-md-6 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="zmdi zmdi-notifications-active"></i> EMPRUNT
@@ -206,7 +202,7 @@
         <!-- /.col-md-6 -->
 
         <!-- .col-md-6 -->
-        <div class="col-md-6 notfinished">
+        <div class="col-md-6 ">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="zmdi zmdi-notifications-active"></i> RETOUR
@@ -234,7 +230,7 @@
 
     <div class="row">
 
-        <div class="col-lg-6 notfinished">
+        <div class="col-lg-6 ">
             <div class="panel panel-default">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -266,7 +262,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="tableEmpruntLots">
 
                             <thead>
                                 <tr>
@@ -279,9 +275,6 @@
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <td colspan="5">Aucun lot sorti pour le moment.</td>
-                                </tr>
                             </tbody>
                         </table>
 
@@ -309,7 +302,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6 notfinished">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -349,7 +342,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="tableReservationLots">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -540,6 +533,114 @@
                                         { "data": "Materiel" },
                                         { "data": "debut" },
                                         { "data": "fin" },
+                                        { "data" : "commande"}
+                                    
+                                    ],
+                                    "columnDefs": [
+                                        {
+                                            "targets": -1,
+                                            "data": null,
+                                            "defaultContent": "<button>Return</button>",
+                                            "render": function (data, type, row, meta) {
+                                                return `
+                                                    <div>
+                                                    <button type="button" class="btn btn-outline btn-success btn-xs " id="validationRes_lot"><span class="glyphicon glyphicon-ok "> </span></button>
+                                                    <a href="edition_reservation_lot.php?editionreslot=3892 &amp;id_user=928 &amp;id_lot=653" class="glyphicon glyphicon-pencil " aria-hidden="true" style="    text-decoration: none; margin-right: 20px;margin-left: 20px;"> </a>
+                                                    <button class="btn btn-outline btn-danger btn-xs delete " id="3892"><span class="glyphicon glyphicon-trash "> </span></button>
+                                                    </div>
+                                                `;
+                                                
+                                            }
+                                        }
+                                    ]
+                                    
+                                }
+                                );
+                            /* #endregion */
+
+
+                            
+                            /* #region //_Filling the table with the "Emprunt getReservationLots" of the user */
+                                if ($.fn.DataTable.isDataTable('#tableEmpruntLots')) {
+                                        $('#tableEmpruntLots').DataTable().destroy();
+                                    }
+
+                                    $('#tableEmpruntLots').DataTable({
+                                        "processing": true,
+                                        "serverSide": true,
+                                        "serverMethod": "post",
+                                        "ajax": "<?=$_SESSION['__DIR__'].'UserC/getLots/'.$user->id ?>",
+                                        paging: false,
+                                        searching: false,
+                                        ordering: false,
+                                        info: false,
+                                        "columns": [
+                                            { "data": "id_emprunt" },
+                                            { "data": "lot" },
+                                            { "data": "data_debut" },
+                                            { "data": "date_fin" },
+                                            { "data" : "statu"}
+                                        
+                                        ],
+                                        "columnDefs": [
+                                            {
+                                                "targets": -1,
+                                                "data": null,
+                                                "defaultContent": "<button>Return</button>",
+                                                "render": function (data, type, row, meta) {
+                                                    console.log(data);
+                                                    if(data == 1){
+                                                        return `
+                                                            <?php 
+                                                                echo "<div>";
+                                                                    echo '<span class="label label-danger">Retard</span>';
+                                                                    echo '<a href="#" id="envoi_mail"><img src="'.$_SESSION["__DIR__"].'assets/'.'img/mail.png"></a>';
+                                                                    echo '<a href="#" id="envoi_sms"><img src="'.$_SESSION["__DIR__"].'assets/'.'img/phone_3.png"></a>';
+                                                                echo '</div>';
+                                                            ?>
+                                                    `;
+                                                    }
+                                                    return '';
+                                                    
+                                                }
+                                            },
+                                            {
+
+                                                //TODO:fix the going to the lot page
+                                                "targets": 1,
+                                                "data": null,
+                                                "defaultContent": "#",
+                                                "render": function (data, type, row, meta) {
+                                                    return `<a href="<?= $_SESSION['__DIR__'].'MatFile/'?>${data}">${data}</a>`;
+                                                }
+                                            }
+                                        ]
+                                        
+                                    }
+                                    );
+                            /* #endregion */
+
+
+                            
+                            /* #region //_Filling the table with the "Reservations lots" of the user */
+                            if ($.fn.DataTable.isDataTable('#tableReservationLots')) {
+                                    $('#tableReservationLots').DataTable().destroy();
+                                }
+
+                                $('#tableReservationLots').DataTable({
+                                    "processing": true,
+                                    "serverSide": true,
+                                    "serverMethod": "post",
+                                    "ajax": "<?=$_SESSION['__DIR__'].'UserC/getReservationLots/'.$user->id ?>",
+                                    paging: false,
+                                    searching: false,
+                                    ordering: false,
+                                    info: false,
+                                    "columns": [
+                                        { "data": "id_reservation" },
+                                        { "data": "lotx" },
+                                        { "data": "data_debut" },
+                                        { "data": "date_fin" },
                                         { "data" : "commande"}
                                     
                                     ],

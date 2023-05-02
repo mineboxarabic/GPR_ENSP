@@ -4,6 +4,10 @@ class MaterielC extends Controller
 {
     public function showMaterielDetails($id_mat){
         $materiel = Materiel::where('id_materiel', $id_mat)->first();
+        if(!$materiel){
+            echo 'Materiel not found';
+            return;
+        }
         $data = [
             'title' => '<h1>Materiel Details</h1>',
             'Mat' => $materiel,
@@ -14,7 +18,7 @@ class MaterielC extends Controller
             'title' => 'Fiche materiel:#' .$id_mat.' - '. $materiel->designation . ' <span class="label label-primary">Etat : '.$etat.'</span>'.$button,
             'bigTitle'=>'Fiche materiel'
         ];
-        echo $this->view('Template/inc.NavTS', $dataNav).
+        $this->view('Template/inc.NavTS', $dataNav).
         $this->view('MatFile',$data).
         $this->view('Template/inc.Footer');
     }
@@ -108,4 +112,52 @@ class MaterielC extends Controller
             echo json_encode($response);
 
     }
+
+    public function retour_Rapide(){
+
+        $this->view('Template/inc.NavTS', [
+            'title' => 'Retour Rapide',
+            'bigTitle'=>'Retour Rapide'
+        ]).
+        $this->view('Template/inc.navFunc').
+        $this->view('Retour_Rapide').
+        $this->view('Template/inc.Footer');
+
+    }
+
+
+    public function getMats(){
+        $mats = Materiel::where('dispo', 0)->get();
+        $data = array();
+
+
+
+        foreach($mats as $mat){
+
+            $emprunt = Emprunt::where('id_materiel', $mat->id_materiel)->first();
+            if(!$emprunt){
+                continue;
+            }
+            $user = User::where('id', $emprunt->id_user)->first();
+            $data[] = array(
+                "id_mat" => $mat->id_materiel,
+                "mat" => $mat->designation,
+                "user" => $user ? $user->first_name . ' '. $user->last_name : 'Inconnu',
+                "debut" => $emprunt->date_debut,
+                "fin" => $emprunt->date_retour,
+                "par" => $mat->modif_user,
+                "retour" => 1
+            );
+        }
+
+            $response = array(
+                "recordsTotal" => count($data),
+                "recordsFiltered" => count($data),
+                "data" => $data
+            );
+            echo json_encode($response);
+
+
+    }
+
 }

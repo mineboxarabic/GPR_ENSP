@@ -88,14 +88,19 @@ class EmpruntC extends Controller
         ]);
 
         //TODO: Change the History of the emprunt to e returned
+        //go back to the previous page
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
 
-    public function seeEmprunts(){
+    public function Emprunts(){
 
         echo $this->view('Template/inc.NavTS', ['title'=>'Fiche utilisateur','bigTitle'=>"Fiche utilisateur"]).
-        $this->view('seeEmprunts').
+        $this->view('Template/inc.navFunc').
+        $this->view('Emprunts').
         $this->view('Template/inc.Footer');    
     }
+
+    
 
 }

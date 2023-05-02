@@ -9,24 +9,24 @@
 * [X] Home Page
 * [X] User profile
 * [X] User search by name.
-* [X] User search by index or id
-
+* [X] User search by index or id.
 * [X] add the history lf Emprent //TODAY
-
-* [ ] Faire l'emrunt et le retourn par indice de materielle .
-* [ ] Impliment the email sending possiblity
-* [ ] Add the "Voir les reservation" page.
-* [ ] Add the "Les retard" page.
-* [ ] disconect
-* [ ] Show all users
-* [ ] create new user
-* [ ] Ban a user
-* [ ] the lot Creation page
-* [ ] project creation page
+* [X] Faire l'emrunt et le retourn par indice de materielle .
+* [X] crete the "Reserver "page
+* [X] Add the "Voir les reservation" page.
+* [ ] the lot Creation page //!here
+* [ ] create the view inside the creation of the Lot; /!here
 * [ ] The gestion of metarial page
 * [ ] gestion of lot oage
 * [ ] Gestion of projects
-* [ ] crete the "Reserver "page
+* [ ] Show all users
+* [ ] create new user
+* [ ] Ban a user
+* [ ] project creation page
+
+* [ ] Add the "Les retard" page.
+* [ ] Impliment the email sending possiblity
+* [ ] disconect
 
 - [ ] test
 <h2>Difficulties </h2>
@@ -83,3 +83,7 @@ En PHP, il existe de nombreuses librairies et frameworks qui utilisent l'archite
         font-weight: bold;
     }
 </style>
+
+Qutrieme semaine de stage:
+<hr>
+1) j'ai prepare le raport de stage pour 3 semaine et je l'ai envoyer a MR. Richardo.

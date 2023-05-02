@@ -9,43 +9,7 @@
         $user = User::find(264);
         echo $user->first_name;
     ?></h1>
-    <div class="row">
 
-        <a href="emprunt.php">
-            <div class="col-xs-3 col-sm-3 col-lg-3 hvr-float box-responsive">
-                <div class="color-box m-lightgreen">
-                    <span class="color">EMPRUNT</span>
-
-                </div>
-            </div>
-        </a>
-
-        <a href="reservations.php">
-            <div class="col-xs-3 col-sm-3 col-lg-3 hvr-float box-responsive">
-                <div class="color-box m-purple">
-                    <span class="color">RÉSERVATIONS</span>
-
-                </div>
-            </div>
-        </a>
-
-        <a href="retour_rapide.php">
-            <div class="col-xs-3 col-sm-3 col-lg-3 hvr-float box-responsive">
-                <div class="color-box m-pink">
-                    <span class="color">RETOUR</span>
-                </div>
-            </div>
-        </a>
-
-        <a href="retour_rapide.php">
-            <div class="col-xs-3 col-sm-3 col-lg-3 hvr-float box-responsive">
-                <div class="color-box m-deeporange">
-                    <span class="color">RETOUR DE LOT</span>
-                </div>
-            </div>
-        </a>
-
-    </div>
 
 
 

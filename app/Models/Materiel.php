@@ -89,6 +89,14 @@ class Materiel extends Eloquent
             return false;
     }
 
+        public static function isDisponibleNoLot($id){
+        $material = Materiel::where('id_materiel', $id)->first();
+        if($material['dispo'] == 1 && Materiel::isMaterialReserved($id) == false)
+            return true;
+        else
+            return false;
+    }
+
     public static function mettreHorsService($id){
         Materiel::where('id_materiel', $id)->update(['dispo' =>0]);
     }

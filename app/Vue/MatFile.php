@@ -237,9 +237,9 @@
 
     <script defer type="module">
         /* #region //_Helper iNumber function */
-        function isNumber(s) {
-            return !isNaN(parseFloat(s)) && isFinite(s);
-        }
+            function isNumber(s) {
+                return !isNaN(parseFloat(s)) && isFinite(s);
+            }
         /* #endregion */
 
         /* #region  //_EN: Button to make the current material unavailable */
@@ -265,30 +265,30 @@
 
         /* #region  //_EN: Validate the borowing of the matiral*/
         //_FR: Valider l'emprunt du matériel 
-        $('#num_user_btn').on('click', function () {
-            let userId = document.querySelector('#num_user').value;
-            $.ajax({
-                url: "<?= $_SESSION['__DIR__'] . 'EmpruntC/addEmpruntMateriel/' ?>" + userId + '/' + <?= $Mat->id_materiel ?>,
-                type: "POST",
+            $('#num_user_btn').on('click', function () {
+                let userId = document.querySelector('#num_user').value;
+                $.ajax({
+                    url: "<?= $_SESSION['__DIR__'] . 'EmpruntC/addEmpruntMateriel/' ?>" + userId + '/' + <?= $Mat->id_materiel ?>,
+                    type: "POST",
 
-                success: function (a) {
-                    //TODO: Translate this
-                    //TODO: ADD the name of the article in here using the php database shit
-                    $.notify("Le " + <?= $Mat->id_materiel ?> + " a ete emprunte", {
-                        className: "success",
-                        type: 'success'
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.log(xhr);
+                    success: function (a) {
+                        //TODO: Translate this
+                        //TODO: ADD the name of the article in here using the php database shit
+                        $.notify("Le " + <?= $Mat->id_materiel ?> + " a ete emprunte", {
+                            className: "success",
+                            type: 'success'
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr);
 
-                    $.notify(xhr.responseText, {
-                        className: "danger",
-                        type: 'danger'
-                    });
-                }
+                        $.notify(xhr.responseText, {
+                            className: "danger",
+                            type: 'danger'
+                        });
+                    }
+                })
             })
-        })
         /* #endregion */
 
 
@@ -409,50 +409,50 @@
         /* #endregion */
 
 
-                /* #region //_Filling the table with the "Reservations" of the user */
-                if ($.fn.DataTable.isDataTable('#historyTable')) {
-                    $('#historyTable').DataTable().destroy();
-                }
-                //TODO:fill this table
-                $('#historyTable').DataTable({
-                    "processing": true,
-                    "serverSide": true,
-                    "serverMethod": "post",
-                    "ajax": "<?=$_SESSION['__DIR__'].'MaterielC/getHistory/'.$Mat->id_materiel ?>",
-                    paging: false,
-                    searching: false,
-                    ordering: false,
-                    info: false,
-                    "columns": [
-                        { "data": "id_historique" },
-                        { "data": "User" },
-                        {"data": "mat"},
-                        { "data": "date_debut" },
-                        { "data": "date_fin" },
-                        { "data": "dispo" }
-                    
-                    ],
-                    columnDefs: [
-                        {
-                                    targets: 2,
-                                        render: function ( data, type, row, meta ) {
-                                            let ret = "<a href='<?= $_SESSION['__DIR__'] . 'MatFile/' ?>" + data + "'>" + data + "</a>";
-                                            return ret;
-                                        }
-                                    
-                            },
+        /* #region //_Filling the table with the "Reservations" of the user */
+                    if ($.fn.DataTable.isDataTable('#historyTable')) {
+                        $('#historyTable').DataTable().destroy();
+                    }
+                    //TODO:fill this table
+                    $('#historyTable').DataTable({
+                        "processing": true,
+                        "serverSide": true,
+                        "serverMethod": "post",
+                        "ajax": "<?=$_SESSION['__DIR__'].'MaterielC/getHistory/'.$Mat->id_materiel ?>",
+                        paging: false,
+                        searching: false,
+                        ordering: false,
+                        info: false,
+                        "columns": [
+                            { "data": "id_historique" },
+                            { "data": "User" },
+                            {"data": "mat"},
+                            { "data": "date_debut" },
+                            { "data": "date_fin" },
+                            { "data": "dispo" }
+                        
+                        ],
+                        columnDefs: [
                             {
-                                    targets: 5,
-                                        render: function ( data, type, row, meta ) {
-                                            let ret = data == 1 ? '<span class="glyphicon glyphicon-ok" style="color:#2ecc71;"> </span>' : '<span class="glyphicon glyphicon-remove" style="color:#ea6153;"> </span>';
-                                            return ret;
-                                        }
-                                    
-                            }
-            ],
-                    
-                }
-                );
+                                        targets: 2,
+                                            render: function ( data, type, row, meta ) {
+                                                let ret = "<a href='<?= $_SESSION['__DIR__'] . 'MatFile/' ?>" + data + "'>" + data + "</a>";
+                                                return ret;
+                                            }
+                                        
+                                },
+                                {
+                                        targets: 5,
+                                            render: function ( data, type, row, meta ) {
+                                                let ret = data == 1 ? '<span class="glyphicon glyphicon-ok" style="color:#2ecc71;"> </span>' : '<span class="glyphicon glyphicon-remove" style="color:#ea6153;"> </span>';
+                                                return ret;
+                                            }
+                                        
+                                }
+                    ],
+                            
+                        }
+                        );
         /* #endregion */
     </script>
 

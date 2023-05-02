@@ -25,7 +25,7 @@
                                 class="glyphicon glyphicon-th-large"></i>Accueil</a>
                     </li>
                     <li>
-                        <a href="./reservations.php" style="font-family: 'Raleway', sans-serif;"><i
+                        <a href="<?= $_SESSION["__DIR__"].'ReservationsC/Reservations' ?>" style="font-family: 'Raleway', sans-serif;"><i
                                 class="glyphicon glyphicon-calendar"></i>Réserver</a>
                     </li>
 
@@ -37,7 +37,7 @@
                         <!-- .nav-second-level -->
                         <ul class="nav nav-second-level collapse" aria-expanded="false">
                             <li>
-                                <a href="./creation_lot.php" class="legitRipple">Création d'un lot</a>
+                                <a href="<?= $_SESSION["__DIR__"].'LotC/creation_lot' ?>" class="legitRipple">Création d'un lot</a>
                             </li>
                             <li>
                                 <a href="./creation_projet.php" class="legitRipple">Création d'un projet</a>

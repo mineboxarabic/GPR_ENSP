@@ -65,7 +65,7 @@ class UserC extends Controller
     }
 
     public function getEmprunts($id_user){
-        $Emprunts = Emprunt::where('id_user',$id_user)->get();
+        $Emprunts = Emprunt::where('id_user',$id_user)->where('id_lot', 0)->get();
         //#	Materiel	empruntéLe	àRendreLe Statut
         //return data for DataTables
         $data = array();
@@ -91,5 +91,85 @@ class UserC extends Controller
 
         echo json_encode($output);
 
+    }
+
+    public function getReservations($id_user){
+        $reservations = Reservation::where('id_user', $id_user)->where('lot', 0)->get();
+        //#	Materiel	empruntéLe	àRendreLe Statut
+        //return data for DataTables
+        $data = array();
+
+        foreach($reservations as $reservation){
+            $materiel = Materiel::where('id_materiel', $reservation->id_materiel)->first();
+            if($materiel){
+                $data[] = array(
+                    "id_reservation" => $reservation->id_reservation,
+                    "materiel" => $materiel->nom_materiel,
+                    "data_debut" => $reservation->date_debut,
+                    "date_fin" => $reservation->date_retour,
+                    "command" => 1
+                );
+            }
+        }
+
+        $output = array(
+            "data" => $data,
+        );
+
+        echo json_encode($output);
+    }
+
+    public function getLots($id_user){
+        $emprunts = Emprunt::where('id_user', $id_user)->get();
+        //#	Materiel	empruntéLe	àRendreLe Statut
+        //return data for DataTables
+        $data = array();
+
+        foreach($emprunts as $emprunt){
+            $Lot = Lot::where('id_lot', $emprunt->id_lot)->first();
+            if($Lot){
+                $data[] = array(
+                    "id_emprunt" => $Lot->id_lot,
+                    "lot" => $Lot->nom_lot,
+                    "data_debut" => $emprunt->date_debut,
+                    "date_fin" => $emprunt->date_retour,
+                    "statu" => Emprunt::isLateLot($id_user, $Lot->id_lot)
+                );
+                    
+            }
+        }
+
+        $output = array(
+            "data" => $data,
+        );
+
+        echo json_encode($output);
+    }
+
+    public function getReservationLots($id_user){
+        $reservations = Reservation::where('id_user', $id_user)->get();
+        //#	Materiel	empruntéLe	àRendreLe Statut
+        //return data for DataTables
+        $data = array();
+
+        foreach($reservations as $reservation){
+            $Lot = Lot::where('id_lot', $reservation->id_lot)->first();
+            if($Lot){
+                $data[] = array(
+                    "id_reservation" => $reservation->id_reservation,
+                    "lotx" => $Lot->nom_lot,
+                    "data_debut" => $reservation->date_debut,
+                    "date_fin" => $reservation->date_retour,
+                    "commande" => 1
+                );
+                    
+            }
+        }
+
+        $output = array(
+            "data" => $data,
+        );
+
+        echo json_encode($output);
     }
 }
